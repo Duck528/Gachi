@@ -1,4 +1,5 @@
-﻿using Gachi.ViewModel;
+﻿using Gachi.Util;
+using Gachi.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,11 +24,12 @@ namespace Gachi.View
     /// </summary>
     public sealed partial class MyProjectView : Page
     {
-        private MyProjectViewModel viewModel = new MyProjectViewModel();
         public MyProjectView()
         {
             this.InitializeComponent();
-            this.DataContext = this.viewModel;
+
+            var viewModel = new MyProjectViewModel(new NavigationService());
+            this.DataContext = viewModel;
         }
     }
 }

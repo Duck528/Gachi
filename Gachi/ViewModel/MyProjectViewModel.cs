@@ -1,4 +1,6 @@
 ﻿using Gachi.Model;
+using Gachi.Util;
+using Gachi.View;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -15,6 +17,16 @@ namespace Gachi.ViewModel
 {
     class MyProjectViewModel : ObservableObject
     {
+        /// <summary>
+        /// View 로부터 Page Navigation 정보를 의존성 주입을 받아서
+        /// MVVM 방식으로 페이지 네비게이션을 처리한다
+        /// </summary>
+        private INavigationService navService = null;
+        public MyProjectViewModel(INavigationService navService)
+        {
+            this.navService = navService;
+        }
+
         private Project selectedProject = null;
         /// <summary>
         /// 프로젝트 리스트 중에서 사용자가 선택한 프로젝트가 저장된다
@@ -189,6 +201,29 @@ namespace Gachi.ViewModel
                 return this.doDelete;
             }
         }
+
+        private ICommand doNavMain = null;
+        public ICommand DoNavMain
+        {
+            get
+            {
+                if (this.doNavMain == null)
+                {
+                    this.doNavMain = new RelayCommand(async () =>
+                    {
+                        if (this.SelectedProject == null)
+                        {
+                            var pop = new MessageDialog("프로젝트를 선택해 주세요");
+                            await pop.ShowAsync();
+                            return;
+                        }
+                        this.navService.Navigate(typeof(MainView), this.SelectedProject);
+                    });
+                }
+                return this.doNavMain;
+            }
+        }
+
         #endregion
 
         #region Utils

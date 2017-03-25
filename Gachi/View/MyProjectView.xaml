@@ -63,14 +63,22 @@
                             프로젝트 선택 버튼
                             -->
                             <Button Content="선택"
-                                    Width="120" Margin="15 8 0 0"
+                                    Command="{Binding DoNavMain}"
+                                    Width="120" Margin="15 6 0 0"
                                     Background="{StaticResource selectBtnBgColor}"
                                     Foreground="WhiteSmoke"/>
                             <!--
-                            제목 바꾸기 선택 버튼
+                            프로젝트 이름 바꾸기 선택 버튼
                             -->
                             <Button Content="이름 바꾸기"
                                     Command="{Binding DoRename}"
+                                    Width="120" Margin="7 6 0 0"
+                                    Background="{StaticResource selectBtnBgColor}"
+                                    Foreground="WhiteSmoke"/>
+                            <!--
+                            프로젝트 생성 버튼
+                            -->
+                            <Button Content="프로젝트 생성"
                                     Width="120" Margin="7 6 0 0"
                                     Background="{StaticResource selectBtnBgColor}"
                                     Foreground="WhiteSmoke"/>
