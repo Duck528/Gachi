@@ -55,6 +55,7 @@
                     로그인 버튼
                     -->
                     <Button Content="Login"
+                            Command="{Binding DoLogin}"
                             HorizontalAlignment="Center"
                             Width="70" Margin="0 8 0 0"
                             Background="{StaticResource loginBtnBgColor}"
