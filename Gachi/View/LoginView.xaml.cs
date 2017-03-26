@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Gachi.Util;
+using Gachi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +27,9 @@ namespace Gachi.View
         public LoginView()
         {
             this.InitializeComponent();
+
+            var viewModel = new LoginViewModel(new NavigationService());
+            this.DataContext = viewModel;
         }
     }
 }

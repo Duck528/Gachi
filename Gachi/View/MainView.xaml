@@ -6,8 +6,123 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="bgColor" Color="#FF2F2C2C"/>
+            <SolidColorBrush x:Key="sideColor" Color="#FF3C3636"/>
+            <SolidColorBrush x:Key="bottonColor" Color="#FF681616"/>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Style x:Key="IconTextBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="Width" Value="48" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="TextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
 
+    <Grid Background="{StaticResource bgColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+        
+        <!--
+        Top StatusBar
+        -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <!--
+            Left SideBar를 열고 닫는 햄버거 버튼
+            -->
+            <Button Grid.Column="0" Width="60"
+                    Command="{Binding DoPaneLeftSide}"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    Background="Transparent">
+                <Button.Content>
+                    <Image Source="ms-appx:///Resource/menu.png"/>
+                </Button.Content>
+            </Button>
+            
+            <!--
+            사용자가 선택한 프로젝트 이름
+            -->
+            <TextBlock Text="{Binding CurProject.Title}" 
+                       VerticalAlignment="Center"
+                       Margin="16 0 0 0"
+                       FontSize="12"
+                       Foreground="WhiteSmoke"
+                       Grid.Column="1"/>
+
+            <!--
+            Right SideBar를 열고 닫을 수 있는 버튼
+            -->
+            <Button Grid.Column="2" Background="Transparent" 
+                    Command="{Binding DoPaneRightSide}"
+                    Width="50">
+                <Button.Content>
+                    <TextBlock Text="..."/>
+                </Button.Content>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition MaxWidth="200" MinWidth="0"/>
+            </Grid.ColumnDefinitions>
+
+            <!--
+            Left SideBar
+            특정 메뉴로 갈 수 있는 아이콘이 위치한다
+            -->
+            <SplitView Grid.Column="0" HorizontalAlignment="Left"
+                       OpenPaneLength="140" CompactPaneLength="60"
+                       DisplayMode="CompactOverlay" IsPaneOpen="{Binding LeftSideOpened}">
+                <SplitView.Pane>
+                    <ListView Background="{StaticResource sideColor}">
+
+                    </ListView>
+                </SplitView.Pane>
+            </SplitView>
+            
+            <!--
+            Main Contents
+            - Left SideBar 아이콘을 클릭한 경우 나타나는 창과
+              문서를 수정할 수 있는 컨텐츠 뷰가 이 부분에 나타난다
+            -->
+
+            <!--
+            Right FriendsBar
+            이 프로젝트가 공유된 친구들의 모습을 볼 수 있으며,
+            필요시 채팅을 진행할 수 있다
+            -->
+            <SplitView Grid.Column="2" HorizontalAlignment="Right"
+                       OpenPaneLength="200" CompactPaneLength="0"
+                       FlowDirection="RightToLeft"
+                       DisplayMode="CompactOverlay" 
+                       IsPaneOpen="{Binding RightSideOpened}">
+                <SplitView.Pane>
+                    <StackPanel Background="{StaticResource sideColor}">
+                    </StackPanel>
+                </SplitView.Pane>
+            </SplitView>
+        </Grid>
+
+        
+        <!--
+        Botton EtcBar
+        각 메뉴마다 보여주는 모습이 달라지도록 구성한다
+        -->
+        <Grid Grid.Row="2" Background="{StaticResource bottonColor}">
+            
+        </Grid>
     </Grid>
 </Page>

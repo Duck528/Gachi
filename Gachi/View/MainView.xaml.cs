@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Gachi.Model;
+using Gachi.Util;
+using Gachi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +28,22 @@ namespace Gachi.View
         public MainView()
         {
             this.InitializeComponent();
+
+            var viewModel = new MainViewModel(new NavigationService());
+            this.DataContext = viewModel;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var project = e.Parameter as Project;
+            if (project != null)
+            {
+                var viewModel = this.DataContext as MainViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.CurProject = project;
+                }
+            }
         }
     }
 }

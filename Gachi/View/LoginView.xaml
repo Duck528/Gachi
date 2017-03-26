@@ -18,7 +18,7 @@
     <Grid Background="{StaticResource bgColor}">
         <StackPanel Orientation="Vertical">
             <StackPanel.Children>
-                <TextBlock Text="Gachi" FontSize="28" Margin="0 12 0 0" 
+                <TextBlock Text="같이" FontSize="28" Margin="0 12 0 0" 
                            Foreground="WhiteSmoke" TextAlignment="Center"/>
                 <!-- 
                 로그인 정보 입력 부분
@@ -30,7 +30,8 @@
                     <!--
                     로그인 메시지
                     -->
-                    <TextBlock Text="Login to your account" FontSize="18"
+                    <TextBlock Text="계정에 로그인 하세요" 
+                               FontSize="18"
                                Margin="0 8 0 0"
                                TextAlignment="Center" Foreground="WhiteSmoke"/>
                     <!-- 
@@ -39,8 +40,9 @@
                     <StackPanel Orientation="Horizontal"
                                 Margin="0 14 12 0"
                                 HorizontalAlignment="Center">
-                        <TextBlock Text="ID" Foreground="WhiteSmoke" Width="30"/>
-                        <TextBox Width="240"/>
+                        <TextBlock Text="Email" Foreground="WhiteSmoke" Width="50"/>
+                        <TextBox Width="240" 
+                                 Text="{Binding UserEmail, Mode=TwoWay}"/>
                     </StackPanel>
                     <!-- 
                     패스워드 입력 부분
@@ -48,8 +50,9 @@
                     <StackPanel Orientation="Horizontal"
                                 Margin="0 4 12 0"
                                 HorizontalAlignment="Center">
-                        <TextBlock Text="PW" Foreground="WhiteSmoke" Width="30"/>
-                        <TextBox Width="240"/>
+                        <TextBlock Text="PW" Foreground="WhiteSmoke" Width="50"/>
+                        <PasswordBox Password="{Binding UserPw, Mode=TwoWay}" 
+                                     Width="240" PasswordChar="*"/>
                     </StackPanel>
                     <!--
                     로그인 버튼

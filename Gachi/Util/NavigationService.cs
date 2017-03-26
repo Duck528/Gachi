@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace Gachi.Util
 {
@@ -13,6 +14,7 @@ namespace Gachi.Util
         void GoBack();
         void Navigate(Type page, object param);
         void Navigate(Type page);
+        void OnNavigatedTo(NavigationEventArgs e);
     }
     class NavigationService : INavigationService
     {
@@ -41,6 +43,11 @@ namespace Gachi.Util
             {
                 frame.Navigate(page);
             }
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
