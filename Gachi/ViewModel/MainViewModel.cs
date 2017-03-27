@@ -20,6 +20,22 @@ namespace Gachi.ViewModel
         }
 
         #region PageStatus
+        private User userInfo = null;
+        /// <summary>
+        /// 로그인을 통해 인증된 사용자의 정보
+        /// </summary>
+        public User UserInfo
+        {
+            get { return this.userInfo; }
+            set
+            {
+                if (this.userInfo != value)
+                {
+                    this.userInfo = value;
+                    this.RaisePropertyChanged("UserInfo");
+                }
+            }
+        }
         private Project curProject = null;
         /// <summary>
         /// 프로젝트 선택 윈도우에서 사용자가 선택한 프로젝트이다

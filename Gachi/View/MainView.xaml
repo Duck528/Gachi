@@ -184,7 +184,18 @@
         각 메뉴마다 보여주는 모습이 달라지도록 구성한다
         -->
         <Grid Grid.Row="2" Background="{StaticResource bottonColor}">
-            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--
+            사용자 로그인 정보
+            -->
+            <TextBlock Text="{Binding UserInfo.Email}" 
+                       Grid.Column="0"
+                       Margin="12 0 0 0"
+                       FontSize="10" Foreground="WhiteSmoke"/>
         </Grid>
     </Grid>
 </Page>

@@ -27,6 +27,24 @@ namespace Gachi.ViewModel
             this.navService = navService;
         }
 
+        #region PageStatus
+        private User userInfo = null;
+        /// <summary>
+        /// 로그인을 통해 인증된 사용자의 정보
+        /// </summary>
+        public User UserInfo
+        {
+            get { return this.userInfo; }
+            set
+            {
+                if (this.userInfo != value)
+                {
+                    this.userInfo = value;
+                    this.RaisePropertyChanged("UserInfo");
+                }
+            }
+        }
+
         private Project selectedProject = null;
         /// <summary>
         /// 프로젝트 리스트 중에서 사용자가 선택한 프로젝트가 저장된다
@@ -129,6 +147,7 @@ namespace Gachi.ViewModel
                 }
             }
         }
+        #endregion
 
         #region Commands
         private ICommand doRename = null;
@@ -217,7 +236,11 @@ namespace Gachi.ViewModel
                             await pop.ShowAsync();
                             return;
                         }
-                        this.navService.Navigate(typeof(MainView), this.SelectedProject);
+                        var dict = new Dictionary<string, object>();
+                        dict["userInfo"] = this.UserInfo;
+                        dict["projectInfo"] = this.SelectedProject;
+
+                        this.navService.Navigate(typeof(MainView), dict);
                     });
                 }
                 return this.doNavMain;

@@ -35,13 +35,33 @@ namespace Gachi.View
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var project = e.Parameter as Project;
-            if (project != null)
+            base.OnNavigatedTo(e);
+
+            var dict = e.Parameter as Dictionary<string, object>;
+            if (dict != null)
             {
                 var viewModel = this.DataContext as MainViewModel;
                 if (viewModel != null)
                 {
-                    viewModel.CurProject = project;
+                    object userInfo = null;
+                    object projectInfo = null;
+
+                    bool hasUser = dict.TryGetValue("userInfo", out userInfo);
+                    bool hasProject = dict.TryGetValue("projectInfo", out projectInfo);
+
+                    if (hasUser == true && hasProject == true)
+                    {
+                        var user = userInfo as User;
+                        if (user != null)
+                        {
+                            viewModel.UserInfo = user;
+                        }
+                        var project = projectInfo as Project;
+                        if (project != null)
+                        {
+                            viewModel.CurProject = project;
+                        }
+                    }
                 }
             }
         }
