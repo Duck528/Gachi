@@ -68,7 +68,7 @@
                     Command="{Binding DoPaneRightSide}"
                     Width="50">
                 <Button.Content>
-                    <TextBlock Text="..."/>
+                    <TextBlock Text="..." Foreground="WhiteSmoke"/>
                 </Button.Content>
             </Button>
         </Grid>
@@ -84,12 +84,75 @@
             특정 메뉴로 갈 수 있는 아이콘이 위치한다
             -->
             <SplitView Grid.Column="0" HorizontalAlignment="Left"
-                       OpenPaneLength="140" CompactPaneLength="60"
+                       OpenPaneLength="180" CompactPaneLength="60"
                        DisplayMode="CompactOverlay" IsPaneOpen="{Binding LeftSideOpened}">
                 <SplitView.Pane>
-                    <ListView Background="{StaticResource sideColor}">
-
-                    </ListView>
+                    <StackPanel Background="{StaticResource sideColor}">
+                        <!-- 
+                        New File Button
+                        -->
+                        <Button Background="Transparent">
+                            <Button.Content>
+                                <StackPanel Width="180" Orientation="Horizontal">
+                                    <Image Width="25" Height="25"
+                                           Margin="8 0 0 0"
+                                          Source="ms-appx:///Resource/file.png"/>
+                                   <TextBlock VerticalAlignment="Center" 
+                                              Margin="18 0 0 0"
+                                              FontSize="12"
+                                              Text="새 파일" Foreground="WhiteSmoke"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <!--
+                        Search Button
+                        -->
+                        <Button Background="Transparent">
+                            <Button.Content>
+                                <StackPanel Width="180" Orientation="Horizontal">
+                                    <Image Width="25" Height="25"
+                                           Margin="8 0 0 0"
+                                           Source="ms-appx:///Resource/search.png"/>
+                                    <TextBlock VerticalAlignment="Center" 
+                                               Margin="18 0 0 0"
+                                               FontSize="12"
+                                               Text="탐색" Foreground="WhiteSmoke"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <!--
+                        Git Button
+                        -->
+                        <Button Background="Transparent">
+                            <Button.Content>
+                                <StackPanel Width="180" Orientation="Horizontal">
+                                    <Image Width="25" Height="25"
+                                           Margin="8 0 0 0"
+                                           Source="ms-appx:///Resource/git.png"/>
+                                    <TextBlock VerticalAlignment="Center"
+                                               Margin="18 0 0 0"
+                                               FontSize="12"
+                                               Text="깃허브" Foreground="WhiteSmoke"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <!--
+                        Debug Button
+                        -->
+                        <Button Background="Transparent">
+                            <Button.Content>
+                                <StackPanel Width="180" Orientation="Horizontal">
+                                    <Image Width="25" Height="25"
+                                           Margin="8 0 0 0"
+                                           Source="ms-appx:///Resource/debug.png"/>
+                                    <TextBlock VerticalAlignment="Center"
+                                               Margin="18 0 0 0"
+                                               FontSize="12"
+                                               Text="디버그" Foreground="WhiteSmoke"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
                 </SplitView.Pane>
             </SplitView>
             
@@ -115,7 +178,6 @@
                 </SplitView.Pane>
             </SplitView>
         </Grid>
-
         
         <!--
         Botton EtcBar
