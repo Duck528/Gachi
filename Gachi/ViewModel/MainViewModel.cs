@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Gachi.ViewModel
 {
@@ -124,6 +126,9 @@ namespace Gachi.ViewModel
                 return this.doPaneRightSide;
             }
         }
+        #endregion
+
+        #region Events
         #endregion
     }
 }

@@ -25,11 +25,13 @@ namespace Gachi.View
     /// </summary>
     public sealed partial class MainView : Page
     {
+        private MainViewModel viewModel = null;
         public MainView()
         {
             this.InitializeComponent();
 
             var viewModel = new MainViewModel(new NavigationService());
+            this.viewModel = viewModel;
             this.DataContext = viewModel;
         }
 

@@ -5,6 +5,8 @@
     xmlns:local="using:Gachi.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:c="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
@@ -81,7 +83,7 @@
             - Left SideBar 아이콘을 클릭한 경우 나타나는 창
             - 문서를 수정할 수 있는 컨텐츠 뷰
             -->
-            <Grid Grid.Column="0" Grid.ColumnSpan="2" Background="WhiteSmoke" Margin="60 0 0 0">
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="60 0 0 0">
                 
             </Grid>
             
@@ -173,7 +175,9 @@
                        IsPaneOpen="{Binding RightSideOpened}">
                 <SplitView.Pane>
                     <ListView ItemsSource="{Binding CurProject.Users}" 
-                              CanDragItems="True"
+                              CanReorderItems="True"
+                              CanDrag="True"
+                              AllowDrop="True"
                               Background="{StaticResource sideColor}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
