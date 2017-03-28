@@ -29,7 +29,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
-        
         <!--
         Top StatusBar
         -->
@@ -50,7 +49,6 @@
                     <Image Source="ms-appx:///Resource/menu.png"/>
                 </Button.Content>
             </Button>
-            
             <!--
             사용자가 선택한 프로젝트 이름
             -->
@@ -60,7 +58,6 @@
                        FontSize="12"
                        Foreground="WhiteSmoke"
                        Grid.Column="1"/>
-
             <!--
             Right SideBar를 열고 닫을 수 있는 버튼
             -->
@@ -76,16 +73,25 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition MaxWidth="200" MinWidth="0"/>
+                <ColumnDefinition MaxWidth="280" MinWidth="0"/>
             </Grid.ColumnDefinitions>
 
+            <!--
+            Main Contents
+            - Left SideBar 아이콘을 클릭한 경우 나타나는 창
+            - 문서를 수정할 수 있는 컨텐츠 뷰
+            -->
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Background="WhiteSmoke" Margin="60 0 0 0">
+                
+            </Grid>
+            
             <!--
             Left SideBar
             특정 메뉴로 갈 수 있는 아이콘이 위치한다
             -->
             <SplitView Grid.Column="0" HorizontalAlignment="Left"
                        OpenPaneLength="180" CompactPaneLength="60"
-                       DisplayMode="CompactOverlay" IsPaneOpen="{Binding LeftSideOpened}">
+                       DisplayMode="CompactInline" IsPaneOpen="{Binding LeftSideOpened}">
                 <SplitView.Pane>
                     <StackPanel Background="{StaticResource sideColor}">
                         <!-- 
@@ -155,26 +161,44 @@
                     </StackPanel>
                 </SplitView.Pane>
             </SplitView>
-            
-            <!--
-            Main Contents
-            - Left SideBar 아이콘을 클릭한 경우 나타나는 창과
-              문서를 수정할 수 있는 컨텐츠 뷰가 이 부분에 나타난다
-            -->
-
             <!--
             Right FriendsBar
-            이 프로젝트가 공유된 친구들의 모습을 볼 수 있으며,
+            - Top: 이 프로젝트가 공유된 친구들의 모습을 볼 수 있으며,
             필요시 채팅을 진행할 수 있다
             -->
             <SplitView Grid.Column="2" HorizontalAlignment="Right"
-                       OpenPaneLength="200" CompactPaneLength="0"
+                       OpenPaneLength="280" CompactPaneLength="0"
                        FlowDirection="RightToLeft"
                        DisplayMode="CompactOverlay" 
                        IsPaneOpen="{Binding RightSideOpened}">
                 <SplitView.Pane>
-                    <StackPanel Background="{StaticResource sideColor}">
-                    </StackPanel>
+                    <ListView ItemsSource="{Binding CurProject.Users}" 
+                              CanDragItems="True"
+                              Background="{StaticResource sideColor}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight"
+                                            Margin="0 6 0 0">
+                                    <Image Source="ms-appx:///Resource/profile.png" />
+                                    <StackPanel Margin="8 4 0 0">
+                                        <TextBlock Text="이메일" Width="120" 
+                                                   Margin="0 0 4 0"
+                                                   Foreground="WhiteSmoke" FontSize="12"/>
+                                        <TextBlock Text="{Binding Email}" Width="120" Foreground="Gray" FontSize="12"/>
+                                        <TextBlock Text="이름" Width="120" 
+                                                   Margin="0 4 0 0"
+                                                   Foreground="WhiteSmoke" FontSize="12"/>
+                                        <TextBlock Text="{Binding NickName}" Width="120" 
+                                                   Foreground="Gray" FontSize="12"/>
+                                        <TextBlock Text="접속여부" Width="120" 
+                                                   Margin="0 4 0 0"
+                                                   Foreground="WhiteSmoke" FontSize="12"/>
+                                        <TextBlock Text="접속중" Width="120" Foreground="Gray" FontSize="12"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </SplitView.Pane>
             </SplitView>
         </Grid>
@@ -194,7 +218,7 @@
             -->
             <TextBlock Text="{Binding UserInfo.Email}" 
                        Grid.Column="0"
-                       Margin="12 0 0 0"
+                       Margin="16 0 0 0"
                        FontSize="10" Foreground="WhiteSmoke"/>
         </Grid>
     </Grid>
