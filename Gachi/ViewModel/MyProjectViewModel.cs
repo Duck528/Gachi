@@ -89,7 +89,7 @@ namespace Gachi.ViewModel
                             },
                             new User()
                             {
-                                Name = "",
+                                Name = "란또",
                                 Email = "jae@naver.com",
                                 NickName = "coworker",
                                 ProfileUrl = "",

@@ -182,6 +182,7 @@
                               CanDrag="True"
                               AllowDrop="True"
                               Background="{StaticResource sideColor}">
+
                         <!--
                         우 클릭시 나타나는 팝업 메뉴
                             - 화상 채팅
@@ -190,6 +191,7 @@
                         -->
                         <MenuFlyout x:Name="rightMenuFlyout">
                             <MenuFlyout.Items>
+                                <MenuFlyoutItem Text="{Binding RightTappedUser.Name}" HorizontalAlignment="Right"/>
                                 <MenuFlyoutItem Text="화상채팅 하기" HorizontalAlignment="Right"/>
                                 <MenuFlyoutItem Text="쪽지 보내기" HorizontalAlignment="Right"/>
                                 <MenuFlyoutItem Text="차단하기" HorizontalAlignment="Right"/>
@@ -199,6 +201,11 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight"
                                             Margin="0 6 0 0">
+                                    <interactivity:Interaction.Behaviors>
+                                        <core:EventTriggerBehavior EventName="RightTapped">
+                                            <core:InvokeCommandAction Command="{Binding DataContext.DoRightTapChatBar, ElementName=mainView}" CommandParameter="{Binding}"/>
+                                        </core:EventTriggerBehavior>
+                                    </interactivity:Interaction.Behaviors>
                                     <Image Source="ms-appx:///Resource/profile.png" />
                                     <StackPanel Margin="8 4 0 0">
                                         <TextBlock Text="이메일" Width="120" 

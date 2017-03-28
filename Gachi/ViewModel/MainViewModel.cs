@@ -88,6 +88,27 @@ namespace Gachi.ViewModel
                 }
             }
         }
+
+        private User rightTappedUser = null;
+        /// <summary>
+        /// Right SideBar에서 우클릭된 사용자 정보가 저장된다
+        /// 우 클릭이 되면 Flyout 메뉴가 팝되며 여기선 다음과 같은 기능이 있다
+        /// - 화상 채팅
+        /// - 쪽지 보내기
+        /// - 차단 등
+        /// </summary>
+        public User RightTappedUser
+        {
+            get { return this.rightTappedUser; }
+            set
+            {
+                if (this.rightTappedUser != value)
+                {
+                    this.rightTappedUser = value;
+                    this.RaisePropertyChanged("RightTappedUser");
+                }
+            }
+        }
         #endregion
 
         #region Commands
@@ -127,6 +148,30 @@ namespace Gachi.ViewModel
                 return this.doPaneRightSide;
             }
         }
+
+        private ICommand doRightTapChatBar = null;
+        /// <summary>
+        /// 채팅 바에서 우클릭 되면 실행되며, 
+        /// 우클릭된 사용자 정보를 RightTappedUser 프로퍼티에 저장한다
+        /// </summary>
+        public ICommand DoRightTapChatBar
+        {
+            get
+            {
+                if (this.doRightTapChatBar == null)
+                {
+                    this.doRightTapChatBar = new RelayCommand<object>((object sender) =>
+                    {
+                        var user = sender as User;
+                        if (user != null)
+                        {
+                            this.RightTappedUser = user;
+                        }
+                    });
+                }
+                return this.doRightTapChatBar;
+            }
+        }
         #endregion
 
         #region Events
@@ -138,6 +183,7 @@ namespace Gachi.ViewModel
                 var flyout = wrapper.FindName("rightMenuFlyout") as MenuFlyout;
                 if (flyout != null)
                 {
+                    // Flyout 메뉴를 우클릭된 위치에서 띄운다
                     flyout.ShowAt(wrapper, e.GetPosition(wrapper));
                 }
             }

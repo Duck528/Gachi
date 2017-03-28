@@ -23,9 +23,9 @@
                 프로젝트 내역 폼
                 -->
                 <StackPanel Background="{StaticResource fgColor}"
-                            MinWidth="570" Height="250"
-                            HorizontalAlignment="Left"
-                            Margin="20 24 0 0">
+                            MinHeight="240"
+                            HorizontalAlignment="Stretch"
+                            Margin="20 24 20 24">
                     <!--
                     프로젝트 메시지
                     -->
