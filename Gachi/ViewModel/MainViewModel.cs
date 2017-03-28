@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace Gachi.ViewModel
 {
@@ -129,6 +130,18 @@ namespace Gachi.ViewModel
         #endregion
 
         #region Events
+        public void RightBar_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            var wrapper = sender as ListView;
+            if (wrapper != null)
+            {
+                var flyout = wrapper.FindName("rightMenuFlyout") as MenuFlyout;
+                if (flyout != null)
+                {
+                    flyout.ShowAt(wrapper, e.GetPosition(wrapper));
+                }
+            }
+        }
         #endregion
     }
 }
