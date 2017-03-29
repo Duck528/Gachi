@@ -161,6 +161,22 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
+                        <!--
+                        Add Friend Button
+                        -->
+                        <Button Background="Transparent">
+                            <Button.Content>
+                                <StackPanel Width="180" Orientation="Horizontal">
+                                    <Image Width="25" Height="25"
+                                           Margin="8 0 0 0"
+                                           Source="ms-appx:///Resource/friend.png"/>
+                                    <TextBlock VerticalAlignment="Center"
+                                               Margin="18 0 0 0"
+                                               FontSize="12"
+                                               Text="친구추가" Foreground="WhiteSmoke"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
                     </StackPanel>
                 </SplitView.Pane>
             </SplitView>
