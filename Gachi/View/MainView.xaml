@@ -100,7 +100,9 @@
                         <!-- 
                         New File Button
                         -->
-                        <Button Background="Transparent">
+                        <Button Background="Transparent" 
+                                ToolTipService.Placement="Right"
+                                ToolTipService.ToolTip="새 파일">
                             <Button.Content>
                                 <StackPanel Width="180" Orientation="Horizontal">
                                     <Image Width="25" Height="25"
@@ -116,7 +118,9 @@
                         <!--
                         Search Button
                         -->
-                        <Button Background="Transparent">
+                        <Button Background="Transparent"
+                                ToolTipService.Placement="Right"
+                                ToolTipService.ToolTip="탐색">
                             <Button.Content>
                                 <StackPanel Width="180" Orientation="Horizontal">
                                     <Image Width="25" Height="25"
@@ -132,7 +136,9 @@
                         <!--
                         Git Button
                         -->
-                        <Button Background="Transparent">
+                        <Button Background="Transparent"
+                                ToolTipService.Placement="Right"
+                                ToolTipService.ToolTip="깃허브">
                             <Button.Content>
                                 <StackPanel Width="180" Orientation="Horizontal">
                                     <Image Width="25" Height="25"
@@ -148,7 +154,9 @@
                         <!--
                         Debug Button
                         -->
-                        <Button Background="Transparent">
+                        <Button Background="Transparent"
+                                ToolTipService.Placement="Right"
+                                ToolTipService.ToolTip="디버그">
                             <Button.Content>
                                 <StackPanel Width="180" Orientation="Horizontal">
                                     <Image Width="25" Height="25"
@@ -164,7 +172,9 @@
                         <!--
                         Add Friend Button
                         -->
-                        <Button Background="Transparent">
+                        <Button Background="Transparent"
+                                ToolTipService.Placement="Right"
+                                ToolTipService.ToolTip="친구추가">
                             <Button.Content>
                                 <StackPanel Width="180" Orientation="Horizontal">
                                     <Image Width="25" Height="25"
