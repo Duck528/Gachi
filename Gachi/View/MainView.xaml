@@ -94,7 +94,13 @@
             -->
             <SplitView Grid.Column="0" HorizontalAlignment="Left"
                        OpenPaneLength="180" CompactPaneLength="60"
-                       DisplayMode="CompactInline" IsPaneOpen="{Binding LeftSideOpened}">
+                       DisplayMode="CompactOverlay" 
+                       IsPaneOpen="{Binding LeftSideOpened}">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="PaneClosed">
+                        <core:InvokeCommandAction Command="{Binding DoPaneLeftSide}"/>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
                 <SplitView.Pane>
                     <StackPanel Background="{StaticResource sideColor}">
                         <!-- 
@@ -196,62 +202,37 @@
             필요시 채팅을 진행할 수 있다
             -->
             <SplitView Grid.Column="2" HorizontalAlignment="Right"
-                       OpenPaneLength="280" CompactPaneLength="0"
+                       OpenPaneLength="50" CompactPaneLength="0"
                        FlowDirection="RightToLeft"
-                       DisplayMode="CompactOverlay" 
-                       IsPaneOpen="{Binding RightSideOpened}">
+                       DisplayMode="CompactInline" 
+                       IsPaneOpen="{Binding RightSideOpened, Mode=TwoWay}">
                 <SplitView.Pane>
-                    <ListView x:Name="lvRightBar"
-                              ItemsSource="{Binding CurProject.Users}"
-                              RightTapped="{x:Bind viewModel.RightBar_RightTapped}"
-                              CanReorderItems="True"
-                              CanDrag="True"
-                              AllowDrop="True"
-                              Background="{StaticResource sideColor}">
-
-                        <!--
-                        우 클릭시 나타나는 팝업 메뉴
-                            - 화상 채팅
-                            - 쪽지
-                            - 차단
-                        -->
-                        <MenuFlyout x:Name="rightMenuFlyout">
-                            <MenuFlyout.Items>
-                                <MenuFlyoutItem Text="{Binding RightTappedUser.Name}" HorizontalAlignment="Right"/>
-                                <MenuFlyoutItem Text="화상채팅 하기" HorizontalAlignment="Right"/>
-                                <MenuFlyoutItem Text="쪽지 보내기" HorizontalAlignment="Right"/>
-                                <MenuFlyoutItem Text="차단하기" HorizontalAlignment="Right"/>
-                            </MenuFlyout.Items>
-                        </MenuFlyout>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight"
-                                            Margin="0 6 0 0">
-                                    <interactivity:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="RightTapped">
-                                            <core:InvokeCommandAction Command="{Binding DataContext.DoRightTapChatBar, ElementName=mainView}" CommandParameter="{Binding}"/>
-                                        </core:EventTriggerBehavior>
-                                    </interactivity:Interaction.Behaviors>
-                                    <Image Source="ms-appx:///Resource/profile.png" />
-                                    <StackPanel Margin="8 4 0 0">
-                                        <TextBlock Text="이메일" Width="120" 
-                                                   Margin="0 0 4 0"
-                                                   Foreground="WhiteSmoke" FontSize="12"/>
-                                        <TextBlock Text="{Binding Email}" Width="120" Foreground="Gray" FontSize="12"/>
-                                        <TextBlock Text="이름" Width="120" 
-                                                   Margin="0 4 0 0"
-                                                   Foreground="WhiteSmoke" FontSize="12"/>
-                                        <TextBlock Text="{Binding NickName}" Width="120" 
-                                                   Foreground="Gray" FontSize="12"/>
-                                        <TextBlock Text="접속여부" Width="120" 
-                                                   Margin="0 4 0 0"
-                                                   Foreground="WhiteSmoke" FontSize="12"/>
-                                        <TextBlock Text="접속중" Width="120" Foreground="Gray" FontSize="12"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <Grid Background="{StaticResource sideColor}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <Button Background="Transparent" Foreground="WhiteSmoke">
+                                <Button.Content>
+                                    <TextBlock Text="채팅"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Background="Transparent" Foreground="WhiteSmoke">
+                                <Button.Content>
+                                    <TextBlock Text="탐색"/>
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
+                        <Button Grid.Row="1" Background="Transparent"
+                                Tapped="{x:Bind viewModel.PinRightBarButton_Tapped}"
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch">
+                            <Button.Content>
+                                <Image Source="ms-appx:///Resource/openpin.png"/>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
                 </SplitView.Pane>
             </SplitView>
         </Grid>

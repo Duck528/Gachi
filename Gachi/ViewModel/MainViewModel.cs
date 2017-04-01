@@ -11,6 +11,8 @@ using System.Windows.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Gachi.ViewModel
 {
@@ -109,6 +111,24 @@ namespace Gachi.ViewModel
                 }
             }
         }
+
+        private bool isPinRightSideBar = false;
+        /// <summary>
+        /// true - 우측 사이드 바 고정
+        /// false - 우측 사이드 바 고정되지 않음
+        /// </summary>
+        public bool IsPinRightSideBar
+        {
+            get { return this.isPinRightSideBar; }
+            set
+            {
+                if (this.isPinRightSideBar != value)
+                {
+                    this.isPinRightSideBar = value;
+                    this.RaisePropertyChanged("IsPinRightSideBar");
+                }
+            }
+        }
         #endregion
 
         #region Commands
@@ -142,7 +162,10 @@ namespace Gachi.ViewModel
                 {
                     this.doPaneRightSide = new RelayCommand(() =>
                     {
-                        this.RightSideOpened = !(this.RightSideOpened);
+                        if (this.IsPinRightSideBar != true)
+                        {
+                            this.RightSideOpened = !(this.RightSideOpened);
+                        }
                     });
                 }
                 return this.doPaneRightSide;
@@ -188,6 +211,30 @@ namespace Gachi.ViewModel
                 }
             }
         }
+
+        public void PinRightBarButton_Tapped(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button != null)
+            {
+                this.IsPinRightSideBar = !(this.IsPinRightSideBar);
+                if (this.IsPinRightSideBar == true)
+                {
+                    button.Content = new Image
+                    {
+                        Source = new BitmapImage(new Uri("ms-appx:///Resource/closedpin.png"))
+                    };
+                }
+                else
+                {
+                    button.Content = new Image
+                    {
+                        Source = new BitmapImage(new Uri("ms-appx:///Resource/openpin.png"))
+                    };
+                }
+            }
+        }
         #endregion
+
     }
 }
