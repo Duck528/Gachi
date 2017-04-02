@@ -193,6 +193,24 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
+                        <!--
+                        Alarm 버튼
+                        -->
+                        <Button Background="Transparent"
+                                ToolTipService.Placement="Right"
+                                ToolTipService.ToolTip="알림 표시">
+                            <Button.Content>
+                                <StackPanel Width="180" Orientation="Horizontal">
+                                    <Image Width="25" Height="25"
+                                           Margin="8 0 0 0"
+                                           Source="ms-appx:///Resource/alarm-bell.png"/>
+                                    <TextBlock VerticalAlignment="Center"
+                                               Margin="18 0 0 0"
+                                               FontSize="12"
+                                               Text="알림" Foreground="WhiteSmoke"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
                     </StackPanel>
                 </SplitView.Pane>
             </SplitView>
