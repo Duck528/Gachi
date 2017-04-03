@@ -130,20 +130,38 @@ namespace Gachi.ViewModel
             }
         }
 
-        private bool isVisibileProjectView = false;
+        private bool isVisibleProjectView = false;
         /// <summary>
         /// true - 우측 사이드 바에서 탐색 버튼 클릭이 된 경우이며 프로젝트 탐색기 컨트롤이 화면에 나타난다
         /// false - 우측 사이드 바가 꺼지거나, 탐색 버튼이 다시 눌린 경우에 설정된다
         /// </summary>
-        public bool IsVisibileProjectView
+        public bool IsVisibleProjectView
         {
-            get { return this.isVisibileProjectView; }
+            get { return this.isVisibleProjectView; }
             set
             {
-                if (this.isVisibileProjectView != value)
+                if (this.isVisibleProjectView != value)
                 {
-                    this.isVisibileProjectView = value;
-                    this.RaisePropertyChanged("IsVisibileProjectView");
+                    this.isVisibleProjectView = value;
+                    this.RaisePropertyChanged("IsVisibleProjectView");
+                }
+            }
+        }
+
+        private bool isVisibleChatView = false;
+        /// <summary>
+        /// true - 우측 사이드 바에서 채팅 버튼 클릭이 된 경우이며 채팅 컨트롤이 화면에 나타난다
+        /// false - 우측 사이드바가 꺼지거나, 채팅 버튼이 다시 눌린 경우에 설정된다
+        /// </summary>
+        public bool IsVisibleChatView
+        {
+            get { return this.isVisibleChatView; }
+            set
+            {
+                if (this.isVisibleChatView != value)
+                {
+                    this.isVisibleChatView = value;
+                    this.RaisePropertyChanged("IsVisibleChatView");
                 }
             }
         }
@@ -187,9 +205,14 @@ namespace Gachi.ViewModel
                             if (this.RightSideOpened == false)
                             {
                                 // 프로젝트 뷰가 Visibile한 경우라면 Collapsed로 바꾼다
-                                if (this.IsVisibileProjectView == true)
+                                if (this.IsVisibleProjectView == true)
                                 {
-                                    this.IsVisibileProjectView = false;
+                                    this.IsVisibleProjectView = false;
+                                }
+                                // 채팅뷰가 Visibile한 경우라면 Collapsed로 바꾼다
+                                if (this.IsVisibleChatView == true)
+                                {
+                                    this.IsVisibleChatView = false;
                                 }
                             }
                         }
@@ -235,10 +258,44 @@ namespace Gachi.ViewModel
                 {
                     this.doToggleVisibilityProjectView = new RelayCommand(() =>
                     {
-                        this.IsVisibileProjectView = !(this.isVisibileProjectView);
+                        this.IsVisibleProjectView = !(this.IsVisibleProjectView);
+                        // 만약 프로젝트 뷰가 켜있는 상태에서 채팅바가 켜져있다면
+                        // 채팅바의 비져빌러티를 false로 수정하여 보이지 않게 한다
+                        if (this.IsVisibleProjectView == true)
+                        {
+                            if (this.IsVisibleChatView == true)
+                            {
+                                this.IsVisibleChatView = false;
+                            }
+                        }
                     });
                 }
                 return this.doToggleVisibilityProjectView;
+            }
+        }
+
+        private ICommand doToggleVisibilityChatView = null;
+        public ICommand DoToggleVisibilityChatView
+        {
+            get
+            {
+                if (this.doToggleVisibilityChatView == null)
+                {
+                    this.doToggleVisibilityChatView = new RelayCommand(() =>
+                    {
+                        this.IsVisibleChatView = !(this.IsVisibleChatView);
+                        // 만약 채팅뷰가 켜있는 상태에서 프로젝트바가 켜져있다면
+                        // 프로젝트 뷰의 비져빌러티를 false로 수정하여 보이지 않게 한다
+                        if (this.IsVisibleChatView == true)
+                        {
+                            if (this.IsVisibleProjectView == true)
+                            {
+                                this.IsVisibleProjectView = false;
+                            }
+                        }
+                    });
+                }
+                return this.doToggleVisibilityChatView;
             }
         }
         #endregion

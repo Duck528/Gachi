@@ -90,9 +90,13 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <uc:ProjectView Grid.Column="2"
-                                Visibility="{Binding IsVisibileProjectView, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Visibility="{Binding IsVisibleProjectView, Converter={StaticResource BoolToVisibilityConverter}}"
                                 Margin="0 0 50 0"
                                 HorizontalAlignment="Left"/>
+                <uc:ChattingView Grid.Column="2"
+                                 Visibility="{Binding IsVisibleChatView, Converter={StaticResource BoolToVisibilityConverter}}"
+                                 Margin="0 0 50 0"
+                                 HorizontalAlignment="Left"/>
             </Grid>
 
             <!--
@@ -241,7 +245,8 @@
                             <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0">
-                            <Button Background="Transparent">
+                            <Button Background="Transparent"
+                                    Command="{Binding DoToggleVisibilityChatView}">
                                 <Button.Content>
                                     <StackPanel>
                                         <Image Source="ms-appx:///Resource/chat.png"/>

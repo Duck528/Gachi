@@ -1,0 +1,45 @@
+﻿<UserControl
+    x:Class="Gachi.Control.ChattingView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Gachi.Control"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignWidth="310">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <!--
+        상단 비디오 채팅 
+        -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--
+            채팅할 수 있는 사람들 중에서 한 명을 클릭한 경우
+            좌측에서 큰 화면으로 보여준다
+            -->
+            <Image Grid.Column="0" Source="{Binding}"/>
+            <!--
+            채팅할 수 있는 사용자 목록
+            -->
+            <ListView Grid.Column="1" ItemsSource="{Binding CurProject.Users}">
+                <DataTemplate>
+                    <StackPanel>
+                        <Image Source="{Binding}"/>
+                        <TextBlock Text="{Binding}" 
+                                   Foreground="WhiteSmoke"
+                                   FontSize="12"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</UserControl>

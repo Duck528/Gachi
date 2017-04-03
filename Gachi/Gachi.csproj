@@ -96,6 +96,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\ChattingView.xaml.cs">
+      <DependentUpon>ChattingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\ProjectView.xaml.cs">
       <DependentUpon>ProjectView.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Control\ChattingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\ProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
