@@ -129,6 +129,24 @@ namespace Gachi.ViewModel
                 }
             }
         }
+
+        private bool isVisibileProjectView = false;
+        /// <summary>
+        /// true - 우측 사이드 바에서 탐색 버튼 클릭이 된 경우이며 프로젝트 탐색기 컨트롤이 화면에 나타난다
+        /// false - 우측 사이드 바가 꺼지거나, 탐색 버튼이 다시 눌린 경우에 설정된다
+        /// </summary>
+        public bool IsVisibileProjectView
+        {
+            get { return this.isVisibileProjectView; }
+            set
+            {
+                if (this.isVisibileProjectView != value)
+                {
+                    this.isVisibileProjectView = value;
+                    this.RaisePropertyChanged("IsVisibileProjectView");
+                }
+            }
+        }
         #endregion
 
         #region Commands
@@ -165,6 +183,15 @@ namespace Gachi.ViewModel
                         if (this.IsPinRightSideBar != true)
                         {
                             this.RightSideOpened = !(this.RightSideOpened);
+                            // 만약, 우측 사이드 바가 닫힌 경우라면
+                            if (this.RightSideOpened == false)
+                            {
+                                // 프로젝트 뷰가 Visibile한 경우라면 Collapsed로 바꾼다
+                                if (this.IsVisibileProjectView == true)
+                                {
+                                    this.IsVisibileProjectView = false;
+                                }
+                            }
                         }
                     });
                 }
@@ -193,6 +220,25 @@ namespace Gachi.ViewModel
                     });
                 }
                 return this.doRightTapChatBar;
+            }
+        }
+
+        private ICommand doToggleVisibilityProjectView = null;
+        /// <summary>
+        /// IsVisibleProject를 토글링한다
+        /// </summary>
+        public ICommand DoToggleVisibilityProjectView
+        {
+            get
+            {
+                if (this.doToggleVisibilityProjectView == null)
+                {
+                    this.doToggleVisibilityProjectView = new RelayCommand(() =>
+                    {
+                        this.IsVisibileProjectView = !(this.isVisibileProjectView);
+                    });
+                }
+                return this.doToggleVisibilityProjectView;
             }
         }
         #endregion

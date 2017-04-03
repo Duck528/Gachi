@@ -99,7 +99,9 @@
     <Compile Include="Control\ProjectView.xaml.cs">
       <DependentUpon>ProjectView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Model\Project.cs" />
+    <Compile Include="Model\ProjectItem.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\NavigationService.cs" />
@@ -134,17 +136,24 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Resource\alarm-bell.png" />
     <Content Include="Resource\chat.png" />
+    <Content Include="Resource\closed-directory.png" />
+    <Content Include="Resource\document.png" />
     <Content Include="Resource\friend.png" />
     <Content Include="Resource\closedpin.png" />
+    <Content Include="Resource\next.png" />
     <Content Include="Resource\openpin.png" />
+    <Content Include="Resource\previous.png" />
     <Content Include="Resource\profile.png" />
     <Content Include="Resource\debug.png" />
     <Content Include="Resource\file.png" />
     <Content Include="Resource\git.png" />
     <Content Include="Resource\menu.png" />
+    <Content Include="Resource\refresh.png" />
     <Content Include="Resource\search.png" />
     <Content Include="Resource\view-project.png" />
+    <Content Include="Resource\home.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

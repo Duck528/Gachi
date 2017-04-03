@@ -4,6 +4,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Gachi.View"
+    xmlns:cv="using:Gachi.Converter"
+    xmlns:uc="using:Gachi.Control"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
@@ -23,6 +25,8 @@
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="TextAlignment" Value="Center" />
             </Style>
+
+            <cv:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -74,25 +78,28 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition MaxWidth="280" MinWidth="0"/>
-            </Grid.ColumnDefinitions>
-
             <!--
             Main Contents
             - Left SideBar 아이콘을 클릭한 경우 나타나는 창
             - 문서를 수정할 수 있는 컨텐츠 뷰
             -->
-            <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="60 0 0 0">
-                
+            <Grid Margin="60 0 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <uc:ProjectView Grid.Column="2"
+                                Visibility="{Binding IsVisibileProjectView, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Margin="0 0 50 0"
+                                HorizontalAlignment="Left"/>
             </Grid>
-            
+
             <!--
             Left SideBar
             특정 메뉴로 갈 수 있는 아이콘이 위치한다
             -->
-            <SplitView Grid.Column="0" HorizontalAlignment="Left"
+            <SplitView HorizontalAlignment="Left"
                        OpenPaneLength="180" CompactPaneLength="60"
                        DisplayMode="CompactOverlay" 
                        IsPaneOpen="{Binding LeftSideOpened}">
@@ -114,7 +121,7 @@
                                     <Image Width="25" Height="25"
                                            Margin="8 0 0 0"
                                           Source="ms-appx:///Resource/file.png"/>
-                                   <TextBlock VerticalAlignment="Center" 
+                                    <TextBlock VerticalAlignment="Center" 
                                               Margin="18 0 0 0"
                                               FontSize="12"
                                               Text="새 파일" Foreground="WhiteSmoke"/>
@@ -216,15 +223,17 @@
             </SplitView>
             <!--
             Right FriendsBar
-            - Top: 이 프로젝트가 공유된 친구들의 모습을 볼 수 있으며,
+            - Chatting: 이 프로젝트가 공유된 친구들의 모습을 볼 수 있으며,
             필요시 채팅을 진행할 수 있다
+            - Project: 프로젝트 탐색기 (파일, 디렉토리, 이미지 등)
             -->
-            <SplitView Grid.Column="2" HorizontalAlignment="Right"
+            <SplitView HorizontalAlignment="Right"
                        Background="Transparent"
                        OpenPaneLength="50" CompactPaneLength="0"
                        FlowDirection="RightToLeft"
                        DisplayMode="CompactInline" 
-                       IsPaneOpen="{Binding RightSideOpened, Mode=TwoWay}">
+                       BorderThickness="1" BorderBrush="Black"
+                       IsPaneOpen="{Binding RightSideOpened, Mode=TwoWay}" Margin="0,3,0,-3">
                 <SplitView.Pane>
                     <Grid Background="{StaticResource sideColor}">
                         <Grid.RowDefinitions>
@@ -242,7 +251,8 @@
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
-                            <Button Background="Transparent" Foreground="WhiteSmoke">
+                            <Button Background="Transparent" Foreground="WhiteSmoke"
+                                    Command="{Binding DoToggleVisibilityProjectView}">
                                 <Button.Content>
                                     <StackPanel>
                                         <Image Source="ms-appx:///Resource/view-project.png"/>

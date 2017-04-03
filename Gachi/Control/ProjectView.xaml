@@ -2,13 +2,20 @@
     x:Class="Gachi.Control.ProjectView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Gachi.Control"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:t="using:WinRTXamlToolkit.Controls"
+    xmlns:data="using:WinRTXamlToolkit.Controls.Data"
     mc:Ignorable="d"
+     Background="#FF181818"
     VerticalAlignment="Stretch"
-    d:DesignWidth="250">
-    <Grid>
+    d:DesignWidth="310">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="sideColor" Color="#FF3C3636"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid BorderThickness="1" BorderBrush="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="5*"/>
@@ -19,8 +26,8 @@
         프로젝트 상단 바
             - 파일 명 검색
             - 뒤로가기 버튼
-            - 앞으로 가기 버튼
             - 홈으로 가기 버튼
+            - 앞으로 가기 버튼
             - 새로고침 버튼
         -->
         <Grid Grid.Row="0">
@@ -30,20 +37,145 @@
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0"/>
             <StackPanel Grid.Column="1" Orientation="Horizontal"
+                        Background="{StaticResource sideColor}"
                         VerticalAlignment="Stretch">
-                <AppBarButton Icon="Back" 
-                              Foreground="WhiteSmoke"
-                              Width="20" Height="20"/>
-                <AppBarButton Icon="Next" 
-                              Foreground="WhiteSmoke"
-                              Width="20" Height="20"/>
-                <AppBarButton Icon="Home" 
-                              Foreground="WhiteSmoke"
-                              Width="20" Height="20"/>
-                <AppBarButton Icon="Refresh"
-                              Foreground="WhiteSmoke"
-                              Width="20" Height="20"/>
+                <Button Background="Transparent">
+                    <Button.Content>
+                        <Image Source="ms-appx:///Resource/previous.png"
+                               Width="12"/>
+                    </Button.Content>
+                </Button>
+                <Button Width="37" Background="Transparent">
+                    <Button.Content>
+                        <Image Source="ms-appx:///Resource/home.png"
+                               Width="12"/>
+                    </Button.Content>
+                </Button>
+                <Button Background="Transparent">
+                    <Button.Content>
+                        <Image Source="ms-appx:///Resource/next.png"
+                               Width="12"/>
+                    </Button.Content>
+                </Button>
+                <Button Background="Transparent">
+                    <Button.Content>
+                        <Image Source="ms-appx:///Resource/refresh.png"
+                               Width="12"/>
+                    </Button.Content>
+                </Button>
             </StackPanel>
         </Grid>
+        <!--
+        프로젝트 리스트 탐색기
+        -->
+        <t:TreeView Grid.Row="1" Background="Transparent">
+            <!--
+            하드 코딩이 아니라 MVVM 방식으로 작성하는 경우 아래 코드를 사용
+            일단은 하드 코딩으로 진행한다
+            <t:TreeView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="" Width="12"/>
+                        <TextBlock Text="{Binding Title}" FontSize="12"/>
+                    </StackPanel>
+                    <data:DataTemplateExtensions.Hierarchy>
+                        <data:HierarchicalDataTemplate ItemsSource="{Binding }"/>
+                    </data:DataTemplateExtensions.Hierarchy>
+                </DataTemplate>
+            </t:TreeView.ItemTemplate>
+            -->
+            <t:TreeView.Items>
+                <t:TreeViewItem>
+                    <t:TreeViewItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resource/closed-directory.png" Width="20" />
+                            <TextBlock Text="View" 
+                                       VerticalAlignment="Center"
+                                       Margin="8 0 0 0"
+                                       Foreground="WhiteSmoke" FontSize="12"/>
+                        </StackPanel>
+                    </t:TreeViewItem.Header>
+                    <t:TreeViewItem.Items>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resource/document.png" Width="20" />
+                            <TextBlock Text="LoginView.xaml" 
+                                       VerticalAlignment="Center"
+                                       Margin="8 0 0 0"
+                                       Foreground="WhiteSmoke" FontSize="12"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resource/document.png" Width="20" />
+                            <TextBlock Text="JoinUs.xaml" 
+                                       VerticalAlignment="Center"
+                                       Margin="8 0 0 0"
+                                       Foreground="WhiteSmoke" FontSize="12"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resource/document.png" Width="20" />
+                            <TextBlock Text="MainView.xaml" 
+                                       VerticalAlignment="Center"
+                                       Margin="8 0 0 0"
+                                       Foreground="WhiteSmoke" FontSize="12"/>
+                        </StackPanel>
+                    </t:TreeViewItem.Items>
+                </t:TreeViewItem>
+
+                <t:TreeViewItem>
+                    <t:TreeViewItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resource/closed-directory.png" Width="20" />
+                            <TextBlock Text="Util" 
+                                       VerticalAlignment="Center"
+                                       Margin="8 0 0 0"
+                                       Foreground="WhiteSmoke" FontSize="12"/>
+                        </StackPanel>
+                    </t:TreeViewItem.Header>
+                    <t:TreeViewItem.Items>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resource/document.png" Width="20" />
+                            <TextBlock Text="NavigationService.cs" 
+                                       VerticalAlignment="Center"
+                                       Margin="8 0 0 0"
+                                       Foreground="WhiteSmoke" FontSize="12"/>
+                        </StackPanel>
+                    </t:TreeViewItem.Items>
+                </t:TreeViewItem>
+
+                <t:TreeViewItem>
+                    <t:TreeViewItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resource/closed-directory.png" Width="20" />
+                            <TextBlock Text="ViewModel" 
+                                       VerticalAlignment="Center"
+                                       Margin="8 0 0 0"
+                                       Foreground="WhiteSmoke" FontSize="12"/>
+                        </StackPanel>
+                    </t:TreeViewItem.Header>
+                    <t:TreeViewItem.Items>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resource/document.png" Width="20" />
+                            <TextBlock Text="MainViewModel.cs" 
+                                       VerticalAlignment="Center"
+                                       Margin="8 0 0 0"
+                                       Foreground="WhiteSmoke" FontSize="12"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resource/document.png" Width="20" />
+                            <TextBlock Text="LoginViewModel.cs" 
+                                       VerticalAlignment="Center"
+                                       Margin="8 0 0 0"
+                                       Foreground="WhiteSmoke" FontSize="12"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resource/document.png" Width="20" />
+                            <TextBlock Text="JoinUsViewModel.cs" 
+                                       VerticalAlignment="Center"
+                                       Margin="8 0 0 0"
+                                       Foreground="WhiteSmoke" FontSize="12"/>
+                        </StackPanel>
+                    </t:TreeViewItem.Items>
+                </t:TreeViewItem>
+            </t:TreeView.Items>
+        </t:TreeView>
     </Grid>
 </UserControl>
