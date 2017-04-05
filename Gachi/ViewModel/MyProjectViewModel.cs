@@ -84,7 +84,7 @@ namespace Gachi.ViewModel
                                 Name = "안덕환",
                                 Email = "sdzaq@naver.com",
                                 NickName = "thekan",
-                                ProfileUrl = "",
+                                ProfileUrl = "ms-appx:///Resource/profile02.png",
                                 Pw = "1234"
                             },
                             new User()
@@ -92,7 +92,7 @@ namespace Gachi.ViewModel
                                 Name = "란또",
                                 Email = "jae@naver.com",
                                 NickName = "coworker",
-                                ProfileUrl = "",
+                                ProfileUrl = "ms-appx:///Resource/profile01.png",
                                 Pw = "1234"
                             }
                         }
@@ -107,9 +107,9 @@ namespace Gachi.ViewModel
                             new User()
                             {
                                 Name = "안덕환",
-                                Email = "ranran@naver.com",
-                                NickName = "GoodGirl",
-                                ProfileUrl = "",
+                                Email = "sdzaq@naver.com",
+                                NickName = "thekan",
+                                ProfileUrl = "ms-appx:///Resource/profile02.png",
                                 Pw = "1234"
                             }
                         }

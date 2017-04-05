@@ -63,6 +63,56 @@ namespace Gachi.View
                         {
                             viewModel.CurProject = project;
                         }
+
+                        viewModel.Messages.Add(new Message()
+                        {
+                            Contents = "비오는날엔... 파전에 막걸린데 말이죠",
+                            CountUnReader = 1,
+                            Date = "2017-04-05",
+                            Time = "19:05",
+                            ProjectId = "unknown",
+                            Sender = new User()
+                            {
+                                Name = "란또",
+                                Email = "jae@naver.com",
+                                NickName = "coworker",
+                                ProfileUrl = "ms-appx:///Resource/profile01.png",
+                                Pw = "1234"
+                            }
+                        });
+                        viewModel.Messages.Add(new Message()
+                        {
+                            Contents = "그르게요",
+                            CountUnReader = 1,
+                            Date = "2017-04-05",
+                            Time = "19:07",
+                            ProjectId = "unknown",
+                            Sender = new User()
+                            {
+                                Name = "안덕환",
+                                Email = "ranran@naver.com",
+                                NickName = "GoodGirl",
+                                ProfileUrl = "ms-appx:///Resource/profile02.png",
+                                Pw = "1234"
+                            },
+                            IsMine = true
+                        });
+                        viewModel.Messages.Add(new Message()
+                        {
+                            Contents = "파이팅합시다",
+                            CountUnReader = 1,
+                            Date = "2017-04-05",
+                            Time = "19:10",
+                            ProjectId = "unknown",
+                            Sender = new User()
+                            {
+                                Name = "란또",
+                                Email = "jae@naver.com",
+                                NickName = "coworker",
+                                ProfileUrl = "ms-appx:///Resource/profile01.png",
+                                Pw = "1234"
+                            }
+                        });
                     }
                 }
             }

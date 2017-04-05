@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -165,6 +166,55 @@ namespace Gachi.ViewModel
                 }
             }
         }
+
+        private User mainChatUser = null;
+        /// <summary>
+        /// 채팅할 수 있는 프로젝트가 공유된 유저 목록에서 
+        /// 사용자가 1명을 선택된 경우 이 변수에 바인딩된다
+        /// </summary>
+        public User MainChatUser
+        {
+            get { return this.mainChatUser; }
+            set
+            {
+                // 다른 사용자가 클릭된 경우라면 교체한다
+                if (this.mainChatUser != value)
+                {
+                    this.mainChatUser = value;
+                    this.RaisePropertyChanged("MainChatUser");
+                }
+                // 만약, 같은 사용자가 두 번 이상 클릭된 경우엔 비운다
+                else
+                {
+                    this.mainChatUser = null;
+                    this.RaisePropertyChanged("MainChatUser");
+                }
+            }
+        }
+
+        private ObservableCollection<Message> messages = null;
+        /// <summary>
+        /// 프로젝트 채팅에서 수신된 메시지 목록들
+        /// </summary>
+        public ObservableCollection<Message> Messages
+        {
+            get
+            {
+                if (this.messages == null)
+                {
+                    this.messages = new ObservableCollection<Message>();
+                }
+                return this.messages;
+            }
+            set
+            {
+                if (this.messages != value)
+                {
+                    this.messages = value;
+                    this.RaisePropertyChanged("Messages");
+                }
+            }
+        }
         #endregion
 
         #region Commands
@@ -296,6 +346,38 @@ namespace Gachi.ViewModel
                     });
                 }
                 return this.doToggleVisibilityChatView;
+            }
+        }
+
+        private ICommand doTapMainChatUserInUsers = null;
+        /// <summary>
+        /// 사용자가 채팅할 1명의 사용자를 선택한 경우
+        /// </summary>
+        public ICommand DoTapMainChatUserInUsers
+        {
+            get
+            {
+                if (this.doTapMainChatUserInUsers == null)
+                {
+                    this.doTapMainChatUserInUsers = new RelayCommand<object>((object sender) =>
+                    {
+                        // 메인으로 채팅할 유저를 선택한다
+                        var chatUser = sender as User;
+                        if (chatUser != null)
+                        {
+                            this.MainChatUser = chatUser;
+                        }
+
+                        // 메인으로 선택된 사용자를 채팅 목록에서 가장 상단으로 올린다
+                        // 사용자 목록에서 선택된 사용자를 제거한 뒤 가장 상단에 삽입한다
+                        bool isRemoved = this.CurProject.Users.Remove(this.MainChatUser);
+                        if (isRemoved == true)
+                        {
+                            this.CurProject.Users.Insert(0, this.MainChatUser);
+                        }
+                    });
+                }
+                return this.doTapMainChatUserInUsers;
             }
         }
         #endregion

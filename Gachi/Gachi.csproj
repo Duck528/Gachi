@@ -102,7 +102,13 @@
     <Compile Include="Control\ProjectView.xaml.cs">
       <DependentUpon>ProjectView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\BoolToHorizontalAlignmentConverter.cs" />
+    <Compile Include="Converter\BoolToMarginConverter.cs" />
+    <Compile Include="Converter\BoolToSolidBrushConverter.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converter\IntegerToIntegerConverter.cs" />
+    <Compile Include="Converter\InverseBoolToVisibilityConverter.cs" />
+    <Compile Include="Model\Message.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\ProjectItem.cs" />
     <Compile Include="Model\User.cs" />
@@ -153,6 +159,8 @@
     <Content Include="Resource\file.png" />
     <Content Include="Resource\git.png" />
     <Content Include="Resource\menu.png" />
+    <Content Include="Resource\profile01.png" />
+    <Content Include="Resource\profile02.png" />
     <Content Include="Resource\refresh.png" />
     <Content Include="Resource\search.png" />
     <Content Include="Resource\view-project.png" />
