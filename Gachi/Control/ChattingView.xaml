@@ -38,9 +38,8 @@
             채팅할 수 있는 사람들 중에서 한 명을 클릭한 경우
             좌측에서 큰 화면으로 보여준다
             -->
-            <Ellipse Height="170" Width="170" 
-                     VerticalAlignment="Top"
-                     Margin="20 10 0 0">
+            <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                     Margin="10">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="{Binding MainChatUser.ProfileUrl}"/>
                 </Ellipse.Fill>

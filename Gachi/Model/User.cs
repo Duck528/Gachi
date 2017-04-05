@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gachi.Model
 {
+    public enum LinkStatus { Connected, DisConnected, Busy };
     public class User : ObservableObject
     {
         private string name = "";
@@ -92,6 +93,23 @@ namespace Gachi.Model
                 {
                     this.pw = value;
                     this.RaisePropertyChanged("Pw");
+                }
+            }
+        }
+
+        private LinkStatus userLinkStatus = LinkStatus.DisConnected;
+        /// <summary>
+        /// 사용자 접속 정보
+        /// </summary>
+        public LinkStatus UserLinkStatus
+        {
+            get { return this.userLinkStatus; }
+            set
+            {
+                if (this.userLinkStatus != value)
+                {
+                    this.userLinkStatus = value;
+                    this.RaisePropertyChanged("UserLinkStatus");
                 }
             }
         }
