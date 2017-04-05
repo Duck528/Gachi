@@ -35,6 +35,25 @@ namespace Gachi.View
             this.DataContext = viewModel;
         }
 
+        /// <summary>
+        /// 설명을 보니 엔터가 눌린 경우를 판단할 때는
+        /// MVVM 방식으로 Event를 구독하는 방법보다는 이와같이,
+        /// 내장함수 OnKeyDown 메서드를 오버라이딩하는게
+        /// 더 효율적이라는 문서를 읽어서 이렇게 구성하였다
+        /// 주소: http://stackoverflow.com/questions/15434494/winrt-application-login-by-pressing-enter-key-with-mvvm-light
+        /// </summary>
+        /// <param name="e">이벤트</param>
+        protected override void OnKeyDown(KeyRoutedEventArgs e)
+        {
+            base.OnKeyDown(e);
+
+            // 만약에 엔터키가 눌렸다면,
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                this.viewModel.DoSendMessage.Execute(null);
+            }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

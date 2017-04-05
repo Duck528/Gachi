@@ -79,7 +79,7 @@ namespace Gachi.ViewModel
                         var user = new User();
                         user.Email = this.UserEmail;
                         user.NickName = "thekan";
-                        user.ProfileUrl = "";
+                        user.ProfileUrl = "ms-appx:///Resource/profile02.png";
 
                         // 다음 페이지에 사용자 정보를 넘겨준다
                         this.navService.Navigate(typeof(MyProjectView), user);

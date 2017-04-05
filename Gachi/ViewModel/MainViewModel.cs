@@ -215,6 +215,20 @@ namespace Gachi.ViewModel
                 }
             }
         }
+
+        private string chatText = "";
+        public string ChatText
+        {
+            get { return this.chatText; }
+            set
+            {
+                if (this.chatText != value)
+                {
+                    this.chatText = value;
+                    this.RaisePropertyChanged("ChatText");
+                }
+            }
+        }
         #endregion
 
         #region Commands
@@ -378,6 +392,37 @@ namespace Gachi.ViewModel
                     });
                 }
                 return this.doTapMainChatUserInUsers;
+            }
+        }
+
+        private ICommand doSendMessage = null;
+        public ICommand DoSendMessage
+        {
+            get
+            {
+                if (this.doSendMessage == null)
+                {
+                    this.doSendMessage = new RelayCommand(() =>
+                    {
+                        if ("".Equals(this.ChatText.Trim()) == false)
+                        {
+                            // 메시지를 채팅창에 추가한다
+                            this.Messages.Add(new Message()
+                            {
+                                Contents = this.chatText,
+                                CountUnReader = this.CurProject.Users.Count(),
+                                Date = "2017-04-06",
+                                IsMine = true,
+                                ProjectId = "unknown",
+                                Sender = this.UserInfo,
+                                Time = "03:04"
+                            });
+                            // 텍스트 박스에 입력된 텍스트를 지운다
+                            this.ChatText = "";
+                        }
+                    });
+                }
+                return this.doSendMessage;
             }
         }
         #endregion

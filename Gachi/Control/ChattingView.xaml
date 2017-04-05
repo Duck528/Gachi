@@ -87,6 +87,13 @@
             텍스트가 써지는 곳
             -->
             <ItemsControl Grid.Row="0" ItemsSource="{Binding Messages}">
+                <ItemsControl.Template>
+                    <ControlTemplate>
+                        <ScrollViewer>
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ItemsControl.Template>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel/>
@@ -184,9 +191,11 @@
                     </Button>
                 </StackPanel>
                 <TextBox Background="#FF251C1C" PlaceholderText="Input text message..."
+                         Text="{Binding ChatText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Row="1"
                          BorderThickness="0"
-                         Foreground="WhiteSmoke" FontSize="11"/>
+                         Foreground="WhiteSmoke" FontSize="11">
+                </TextBox>
             </Grid>
         </Grid>
     </Grid>
