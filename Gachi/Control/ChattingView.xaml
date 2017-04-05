@@ -105,52 +105,87 @@
                             <!--
                             다른 사람이 말 한 경우
                             -->
-                            <StackPanel Orientation="Horizontal" Margin="6 0 0 0"
-                                    HorizontalAlignment="Left"
-                                    Visibility="{Binding IsMine, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                            <Grid Margin="6 3 0 0"
+                                  HorizontalAlignment="Left"
+                                  Visibility="{Binding IsMine, Converter={StaticResource InverseBoolToVisibilityConverter}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- 
+                                사용자 이미지
+                                -->
                                 <Ellipse Height="40" Width="40"
-                                     HorizontalAlignment="Center">
+                                         Grid.Column="0"
+                                         VerticalAlignment="Top"
+                                         HorizontalAlignment="Center">
                                     <Ellipse.Fill>
                                         <ImageBrush ImageSource="{Binding Sender.ProfileUrl}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <Border BorderThickness="0"
-                                    CornerRadius="4"
-                                    Margin="{Binding IsMine, Converter={StaticResource BoolToMarginConverter}}"
-                                    Background="{Binding IsMine, Converter={StaticResource BoolToSolidBrushConverter}}"
-                                    HorizontalAlignment="{Binding IsMine, Converter={StaticResource BoolToHorizontalAlignmentConverter}}"
-                                    Width="{Binding ElementName=tbk1Msg, Path=ActualWidth, Mode=TwoWay, Converter={StaticResource IntegerToIntegerConverter}}"
-                                    Height="{Binding ElementName=tbk1Msg, Path=ActualHeight, Mode=TwoWay, Converter={StaticResource IntegerToIntegerConverter}}">
-                                    <TextBlock x:Name="tbk1Msg" 
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           Text="{Binding Contents}" FontSize="12" Foreground="Black"/>
-                                </Border>
-                            </StackPanel>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <!-- 메시지 송신자 이름 -->
+                                    <TextBlock Text="{Binding Sender.Name}" FontSize="10"
+                                               Grid.Row="0"
+                                               Margin="8 0 0 0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Foreground="WhiteSmoke"/>
+                                    <!-- 송신 내용 -->
+                                    <Border BorderThickness="0"
+                                            Grid.Row="1"
+                                            VerticalAlignment="Top"
+                                            CornerRadius="4"
+                                            Margin="{Binding IsMine, Converter={StaticResource BoolToMarginConverter}}"
+                                            Background="{Binding IsMine, Converter={StaticResource BoolToSolidBrushConverter}}"
+                                            Width="{Binding ElementName=tbk1Msg, Path=ActualWidth, Mode=TwoWay, Converter={StaticResource IntegerToIntegerConverter}}"
+                                            Height="{Binding ElementName=tbk1Msg, Path=ActualHeight, Mode=TwoWay, Converter={StaticResource IntegerToIntegerConverter}}">
+                                        <TextBlock x:Name="tbk1Msg" 
+                                                   MaxWidth="200" TextWrapping="Wrap"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Text="{Binding Contents}" FontSize="12" 
+                                                   Foreground="Black"/>
+                                    </Border>
+                                </Grid>
+                            </Grid>
                             <!--
                             내가 말 한 경우
                             -->
-                            <StackPanel Orientation="Horizontal" Margin="0 0 6 0"
-                                    HorizontalAlignment="Right"
-                                    Visibility="{Binding IsMine, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" Margin="0 0 12 3"
+                                        HorizontalAlignment="Right"
+                                        Visibility="{Binding IsMine, Converter={StaticResource BoolToVisibilityConverter}}">
                                 <Border BorderThickness="0"
-                                    CornerRadius="4"
-                                    Margin="{Binding IsMine, Converter={StaticResource BoolToMarginConverter}}"
-                                    Background="{Binding IsMine, Converter={StaticResource BoolToSolidBrushConverter}}"
-                                    HorizontalAlignment="{Binding IsMine, Converter={StaticResource BoolToHorizontalAlignmentConverter}}"
-                                    Width="{Binding ElementName=tbk2Msg, Path=ActualWidth, Mode=TwoWay, Converter={StaticResource IntegerToIntegerConverter}}"
-                                    Height="{Binding ElementName=tbk2Msg, Path=ActualHeight, Mode=TwoWay, Converter={StaticResource IntegerToIntegerConverter}}">
+                                        CornerRadius="4"
+                                        Margin="{Binding IsMine, Converter={StaticResource BoolToMarginConverter}}"
+                                        Background="{Binding IsMine, Converter={StaticResource BoolToSolidBrushConverter}}"
+                                        HorizontalAlignment="{Binding IsMine, Converter={StaticResource BoolToHorizontalAlignmentConverter}}"
+                                        Width="{Binding ElementName=tbk2Msg, Path=ActualWidth, Mode=TwoWay, Converter={StaticResource IntegerToIntegerConverter}}"
+                                        Height="{Binding ElementName=tbk2Msg, Path=ActualHeight, Mode=TwoWay, Converter={StaticResource IntegerToIntegerConverter}}">
                                     <TextBlock x:Name="tbk2Msg" 
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           Text="{Binding Contents}" FontSize="12" Foreground="Black"/>
+                                               MaxWidth="200" TextWrapping="Wrap"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Text="{Binding Contents}" FontSize="12" Foreground="Black"/>
                                 </Border>
-                                <Ellipse Height="40" Width="40"
-                                     HorizontalAlignment="Center">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding Sender.ProfileUrl}"/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
+                                <!--
+                                <StackPanel Orientation="Vertical">
+                                    <Ellipse Height="40" Width="40"
+                                             HorizontalAlignment="Center">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding Sender.ProfileUrl}"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock Text="{Binding Sender.Name}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="10" Foreground="WhiteSmoke"/>
+                                </StackPanel>
+                                -->
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>
@@ -192,6 +227,7 @@
                 </StackPanel>
                 <TextBox Background="#FF251C1C" PlaceholderText="Input text message..."
                          Text="{Binding ChatText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Width="310" TextWrapping="Wrap"
                          Grid.Row="1"
                          BorderThickness="0"
                          Foreground="WhiteSmoke" FontSize="11">
