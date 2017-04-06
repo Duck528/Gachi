@@ -152,6 +152,7 @@
     <Content Include="Resource\document.png" />
     <Content Include="Resource\friend.png" />
     <Content Include="Resource\closedpin.png" />
+    <Content Include="Resource\logo-gachi.png" />
     <Content Include="Resource\next.png" />
     <Content Include="Resource\openpin.png" />
     <Content Include="Resource\previous.png" />

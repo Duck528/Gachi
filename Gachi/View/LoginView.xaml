@@ -12,28 +12,32 @@
             <SolidColorBrush x:Key="fgColor" Color="#FF221F1F"/>
             <SolidColorBrush x:Key="loginBtnBgColor" Color="#FF243F65"/>
             <SolidColorBrush x:Key="joinBtnFgColor" Color="#FF156DEA"/>
+            <Style x:Key="TbxNonHoverStyle" TargetType="TextBox">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TextBox">
+                            
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Page.Resources>
 
     <Grid Background="{StaticResource bgColor}">
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center"
+                    Margin="0 0 0 50">
             <StackPanel.Children>
-                <TextBlock Text="같이" FontSize="28" Margin="0 12 0 0" 
-                           Foreground="WhiteSmoke" TextAlignment="Center"/>
+                <Image Source="ms-appx:///Resource/logo-gachi.png" 
+                       Width="200"/>
                 <!-- 
                 로그인 정보 입력 부분
                 -->
+                <Border CornerRadius="8" BorderThickness="1">
                 <StackPanel Background="{StaticResource fgColor}"
                             Width="400" Height="250"
                             HorizontalAlignment="Center"
-                            Margin="0 24 0 0">
-                    <!--
-                    로그인 메시지
-                    -->
-                    <TextBlock Text="계정에 로그인 하세요" 
-                               FontSize="18"
-                               Margin="0 8 0 0"
-                               TextAlignment="Center" Foreground="WhiteSmoke"/>
+                            Margin="0 0 0 0">
                     <!-- 
                     아이디 입력 부분
                     -->
@@ -77,6 +81,7 @@
                                 Foreground="{StaticResource joinBtnFgColor}"/>
                     </StackPanel>
                 </StackPanel>
+                </Border>
             </StackPanel.Children>
         </StackPanel>
     </Grid>
