@@ -19,6 +19,7 @@
             <cv:BoolToMarginConverter x:Name="BoolToMarginConverter"/>
             <cv:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
             <cv:InverseBoolToVisibilityConverter x:Name="InverseBoolToVisibilityConverter"/>
+            <cv:HasTextToBoolConverter x:Name="HasTextToBoolConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid BorderThickness="1" BorderBrush="Black">
@@ -89,7 +90,7 @@
             <ItemsControl Grid.Row="0" ItemsSource="{Binding Messages}">
                 <ItemsControl.Template>
                     <ControlTemplate>
-                        <ScrollViewer>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <ItemsPresenter/>
                         </ScrollViewer>
                     </ControlTemplate>
@@ -225,13 +226,28 @@
                         </Button.Content>
                     </Button>
                 </StackPanel>
-                <TextBox Background="#FF251C1C" PlaceholderText="Input text message..."
-                         Text="{Binding ChatText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Width="310" TextWrapping="Wrap"
-                         Grid.Row="1"
-                         BorderThickness="0"
-                         Foreground="WhiteSmoke" FontSize="11">
-                </TextBox>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" 
+                             Background="#FF251C1C" PlaceholderText="Input text message..."
+                             Text="{Binding ChatText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Width="310" TextWrapping="Wrap"
+                             Grid.Row="1"
+                             BorderThickness="0"
+                             Foreground="WhiteSmoke" FontSize="11">
+                    </TextBox>
+                    <Button Grid.Column="1" Content="전송"
+                            IsEnabled="{Binding ChatText, Converter={StaticResource HasTextToBoolConverter}}"
+                            Background="Yellow"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
