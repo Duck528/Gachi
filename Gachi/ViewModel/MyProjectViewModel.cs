@@ -81,20 +81,20 @@ namespace Gachi.ViewModel
                         {
                             new User()
                             {
-                                Name = "안덕환",
-                                Email = "sdzaq@naver.com",
-                                NickName = "thekan",
-                                ProfileUrl = "ms-appx:///Resource/profile02.png",
-                                Pw = "1234"
-                            },
-                            new User()
-                            {
                                 Name = "란또",
                                 Email = "jae@naver.com",
                                 NickName = "coworker",
                                 ProfileUrl = "ms-appx:///Resource/profile01.png",
                                 Pw = "1234"
                             }
+                        },
+                        Master = new User()
+                        {
+                            Name = "안덕환",
+                            Email = "sdzaq@naver.com",
+                            NickName = "thekan",
+                            ProfileUrl = "ms-appx:///Resource/profile02.png",
+                            Pw = "1234"
                         }
                     });
                     newProjects.Add(new Project()
@@ -102,15 +102,31 @@ namespace Gachi.ViewModel
                         Title = "Mogwa",
                         CreatedAt = "2017-02-02",
                         LastModifiedAt = "2017-03-15",
+                        Master = new User()
+                        {
+                            Name = "안덕환",
+                            Email = "sdzaq@naver.com",
+                            NickName = "thekan",
+                            ProfileUrl = "ms-appx:///Resource/profile02.png",
+                            Pw = "1234"
+                        },
                         Users = new ObservableCollection<User>()
                         {
                             new User()
                             {
-                                Name = "안덕환",
-                                Email = "sdzaq@naver.com",
-                                NickName = "thekan",
-                                ProfileUrl = "ms-appx:///Resource/profile02.png",
+                                Name = "란또",
+                                Email = "jae@naver.com",
+                                NickName = "coworker",
+                                ProfileUrl = "ms-appx:///Resource/profile01.png",
                                 Pw = "1234"
+                            },
+                            new User()
+                            {
+                                Name = "김철수",
+                                Email = "abcd@naver.com",
+                                NickName = "Minie",
+                                ProfileUrl = "ms-appx:///Resource/profile01.png",
+                                Pw = "5678"
                             }
                         }
                     });

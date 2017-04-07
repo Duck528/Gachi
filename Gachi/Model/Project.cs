@@ -77,5 +77,22 @@ namespace Gachi.Model
                 }
             }
         }
+
+        private User master = null;
+        /// <summary>
+        /// 이 프로젝트를 생성한 사람
+        /// </summary>
+        public User Master
+        {
+            get { return this.master; }
+            set
+            {
+                if (this.master != value)
+                {
+                    this.master = value;
+                    this.RaisePropertyChanged("Master");
+                }
+            }
+        }
     }
 }
