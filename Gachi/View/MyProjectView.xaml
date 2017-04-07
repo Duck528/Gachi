@@ -123,6 +123,7 @@
                             <Image Source="ms-appx:///Resource/file.png" 
                                    Width="30" Height="30"/>
                             <TextBlock Text="Start a new project"
+                                       VerticalAlignment="Center"
                                        Margin="9 0 0 0"/>
                         </StackPanel>
                     </Button.Content>
@@ -133,6 +134,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Image Source="ms-appx:///Resource/open-project.png" Width="30" Height="30"/>
                             <TextBlock Text="Open an existing project"
+                                       VerticalAlignment="Center"
                                        Margin="9 0 0 0"/>
                         </StackPanel>
                     </Button.Content>
