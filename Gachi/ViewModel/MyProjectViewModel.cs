@@ -138,6 +138,47 @@ namespace Gachi.ViewModel
                             }
                         }
                     });
+                    newProjects.Add(new Project()
+                    {
+                        Title = "Gachi",
+                        CreatedAt = "2017-04-13",
+                        LastModifiedAt = "2017-04-13",
+                        Master = new User()
+                        {
+                            Name = "란또",
+                            Email = "jae@naver.com",
+                            NickName = "coworker",
+                            ProfileUrl = "ms-appx:///Resource/profile01.png",
+                            Pw = "1234"
+                        },
+                        Users = new ObservableCollection<User>()
+                        {
+                            new User()
+                            {
+                                Name = "김철수",
+                                Email = "abcd@naver.com",
+                                NickName = "Minie",
+                                ProfileUrl = "ms-appx:///Resource/profile03.png",
+                                Pw = "5678"
+                            },
+                            new User()
+                            {
+                                Name = "안덕환",
+                                Email = "sdzaq@naver.com",
+                                NickName = "thekan",
+                                ProfileUrl = "ms-appx:///Resource/profile02.png",
+                                Pw = "1234"
+                            },
+                            new User()
+                            {
+                                Name = "김길동",
+                                Email = "abcd5631@naver.com",
+                                NickName = "uglyduck",
+                                ProfileUrl = "ms-appx:///Resource/profile04.png",
+                                Pw = "5678"
+                            }
+                        }
+                    });
                     this.projects = newProjects;
                 }
                 return this.projects;
