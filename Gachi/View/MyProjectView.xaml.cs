@@ -25,12 +25,15 @@ namespace Gachi.View
     /// </summary>
     public sealed partial class MyProjectView : Page
     {
+        private MyProjectViewModel viewModel = null;
         public MyProjectView()
         {
             this.InitializeComponent();
 
             var viewModel = new MyProjectViewModel(new NavigationService());
-            this.DataContext = viewModel;
+
+            this.viewModel = viewModel;
+            this.DataContext = this.viewModel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -45,6 +48,17 @@ namespace Gachi.View
                 {
                     viewModel.UserInfo = user;
                 }
+            }
+        }
+
+        protected override void OnKeyDown(KeyRoutedEventArgs e)
+        {
+            base.OnKeyDown(e);
+
+            // 만약에 엔터키가 눌렸다면,
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                viewModel.DoNavMain.Execute(null);
             }
         }
     }

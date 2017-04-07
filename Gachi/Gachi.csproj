@@ -106,6 +106,7 @@
     <Compile Include="Converter\BoolToMarginConverter.cs" />
     <Compile Include="Converter\BoolToSolidBrushConverter.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converter\CollectionToCountConverter.cs" />
     <Compile Include="Converter\HasTextToBoolConverter.cs" />
     <Compile Include="Converter\IntegerToIntegerConverter.cs" />
     <Compile Include="Converter\InverseBoolToVisibilityConverter.cs" />
@@ -146,6 +147,8 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Resource\open-project.png" />
+    <Content Include="Resource\profile03.png" />
     <Content Include="Resource\alarm-bell.png" />
     <Content Include="Resource\chat.png" />
     <Content Include="Resource\closed-directory.png" />
